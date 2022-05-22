@@ -1,0 +1,21 @@
+(defun real-equal (x y) 
+    (or (< (abs (- x y)) 1e-6)))
+(defun find-roots (a b c) 
+    (let* 
+        ((d (- (* b b) (* 4 (* a c)))))
+        
+        (or (and (real-equal a 0) 
+                (or (and (real-equal b 0) (or (and (real-equal c 0) (list d 'any)) (list d 'no))) 
+                    (list d (/ (- c) b))))
+            (and (real-equal d 0) (list d (/ (- b) (* 2 a))))
+            (list d (/ (+ (- b) (sqrt d)) (* 2 a)) (/ (- (- b) (sqrt d)) (* 2 a))))
+    )
+)
+(defun out-txt (lst) 
+    (with-open-file (stream "out.txt" :direction :output :if-exists :supersede)
+        (or (and (eq (second lst) 'any) (not (format stream "Бесконечное множество корней~%")))
+            (and (eq (second lst) 'no) (not (format stream "Корни отсутствуют")))
+            (and (real-equal (first lst) 0) (not (format stream "Корни: ~,2f кратности 2~%" (second lst)))) 
+            (not (format stream "Корни: ~,2f ~,2f~%" (second lst) (third lst))))))
+
+(out-txt (find-roots 1 2 1))
