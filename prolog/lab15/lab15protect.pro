@@ -38,8 +38,8 @@ clauses
   min4clipping(N1, N2, _, _, N2) :- N2 <= N1, !.
   min4clipping(N1, _, _, _, N1).
   
-  min4clipping2(N1, N2, N3, N4, N4) :- N4 <= N3, N4 <= N2, N4 <= N1, !.
-  min4clipping2(N1, N2, N3, _, N3) :- N3 <= N2, N3 <= N1, !.
+  min4clipping2(N1, N2, N3, N4, N4) :- N4 <= N3, N4 <= N2, N4 <= N1.
+  min4clipping2(N1, N2, N3, _, N3) :- N3 <= N2, N3 <= N1.
   min4clipping2(N1, N2, _, _, N2) :- N2 <= N1.
   min4clipping2(N1, _, _, _, N1).
 

@@ -56,9 +56,13 @@ clauses
   firstReversePair([H|T], Res, Acc, I, Tail) :- I < 2, NewI = I + 1, !, firstReversePair(T, Res, [H|Acc], NewI, Tail).
   
   n1Helper([], Res, Res).
-  n1Helper([H|[]], Res, TmpRes) :- merge([H], TmpRes, Res2), reverse(Res2, Res, []).
+  n1Helper([H|[]], Res, TmpRes) :- merge([H], TmpRes, Res). %reverse(Res2, Res, []).
   n1Helper(List, Res, L) :- firstReversePair(List, TmpRes, [], 0, Tail), merge(L, TmpRes, NewRes), n1Helper(Tail, Res, NewRes).
-  n1(List, Res) :- n1Helper(List, TmpRes, []), reverse(TmpRes, Res, []).
+  %n1(List, Res) :- n1Helper(List, TmpRes, []), reverse(TmpRes, Res, []).
+  
+  n1([],[]).
+  n1([A],[A]).
+  n1([H,H1|T],[H1,H|T2]):-n1(T,T2).
 
   rec_len(Res, Len, [_ | Tail]) :- NewLen = Len + 1, !, rec_len(Res, NewLen, Tail).
   rec_len(Res, Len, []) :- Res = Len.
@@ -79,5 +83,5 @@ goal
   %n3([1, 2, 3, 4, 5, 6], Res).
   %n3([1, 2, 3, 4, 5], Res).
   
-  n1([1, 2, 3, 4, 5, 6], Res).
+  %n1([1, 2, 3, 4, 5, 6], Res).
   %n1([1, 2, 3, 4, 5], Res).
