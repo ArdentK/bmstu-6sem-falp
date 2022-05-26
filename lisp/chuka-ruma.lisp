@@ -20,25 +20,35 @@
 
 (defun add-around (n lst start stop res i)
     (cond ((< i 0) res)
-        ((and (> i stop) (< i start)) (add-around n lst start stop (cons (nth i lst) res) (- i 1)))
-        (t (add-around n lst start stop (cons (+ (nth i lst) 1) res) (- i 1)))))
+        ((and (> i stop) (< i start))
+            (add-around n lst start stop (cons (nth i lst) res) (- i 1)))
+        (t  (add-around n lst start stop (cons (+ (nth i lst) 1) res) (- i 1)))))
 
 (defun add-extra (n start stop lst)
     (cond 
-        ((= start (round (mod (+ stop 1) n))) lst)
-        ((<= start stop) (add-between n lst start stop nil (- n 1)))
-        (t (add-around n lst start stop nil (- n 1)))))
+        ((= start (round (mod (+ stop 1) n))) 
+            lst)
+        ((<= start stop) 
+            (add-between n lst start stop nil (- n 1)))
+        (t  (add-around n lst start stop nil (- n 1)))))
 
 (defun update (n lst start hand)
-    (add-extra n (round (mod (+ 1 start) n)) (round (mod (+ start (mod hand n)) n)) (mapcar #'(lambda (x) (+ x (truncate hand n))) lst)))
+    (add-extra  n 
+                (round (mod (+ 1 start) n)) 
+                (round (mod (+ start (mod hand n)) n)) 
+                (mapcar #'(lambda (x) (+ x (truncate hand n))) lst)))
 
 (defun zeroes (lst x i res)
     (cond ((< i 0) res)
-        ((= i x) (zeroes lst x (- i 1) (cons 0 res)))
-        (t (zeroes lst x (- i 1) (cons (nth i lst) res)))))
+          ((= i x) 
+            (zeroes lst x (- i 1) (cons 0 res)))
+          (t 
+            (zeroes lst x (- i 1) (cons (nth i lst) res)))))
 
 (defun update-list (n lst take hand)
-    (update n (zeroes lst take (- n 1) nil) take hand))
+    (update n 
+            (zeroes lst take (- n 1) nil) 
+            take hand))
 
 (defun tchuka-ruma-loop (n lst hand take res stop)
     (cond ((and (print (list n lst hand take stop)) nil))
@@ -59,7 +69,7 @@
 (defun tchuka-ruma (n lst)
     (tchuka-ruma-starter (+ n 1) (cons 0 lst) 1))
 
-(print (tchuka-ruma 4 '(2 2 2 2)))
+;; (print (tchuka-ruma 4 '(2 2 2 2)))
 ;; (print (tchuka-ruma 1 '(2)))
 ;; (print (tchuka-ruma 7 '(1 2 3 4 5 6 7)))
 

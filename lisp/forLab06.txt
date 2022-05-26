@@ -1,0 +1,11 @@
+(in-package #:generic-monoid) 
+
+(defvar mnd (create_monoid 'cl:+ 0))
+
+(defvar el1 (create_monoid_object mnd 12))
+
+(defvar el2 (create_monoid_object mnd -16))
+
+(defvar res (+ el1 el2))
+
+(val res)
