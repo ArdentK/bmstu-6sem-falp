@@ -116,9 +116,9 @@ notIn(Elem, [H|T]) :- Elem =\= H, notIn(Elem, T).
 in(Elem, [Elem|_]).
 in(Elem, [H|T]) :- Elem =\= H, in(Elem , T).
 
+deleteList([], _, []) :- !.
 deleteList([H|T], List, [H|TR]) :- notIn(H, List), deleteList(T, List, TR).
 deleteList([_|T], List, Res) :- deleteList(T, List, Res), !.
-deleteList([], _, []).
 
 round([], Res, Res, NW, NW, _) :- !.
 round([H|T], Res, Acc, NW, W, Partic) :-

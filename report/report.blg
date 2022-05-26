@@ -1,9 +1,0 @@
-[0] Config.pm:304> INFO - This is Biber 2.14 (beta)
-[0] Config.pm:307> INFO - Logfile is 'report.blg'
-[72] biber:322> INFO - === Ср мар 23, 2022, 22:07:17
-[180] Biber.pm:415> INFO - Reading 'report.bcf'
-[244] Biber.pm:943> INFO - Found 0 citekeys in bib section 0
-[250] Utils.pm:293> WARN - The file 'report.bcf' does not contain any citations!
-[258] bbl.pm:652> INFO - Writing 'report.bbl' with encoding 'UTF-8'
-[258] bbl.pm:755> INFO - Output to report.bbl
-[258] Biber.pm:128> INFO - WARNINGS: 1

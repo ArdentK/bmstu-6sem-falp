@@ -25,7 +25,9 @@
 	(make-instance 'monoid_object :mnd mnd :val val))
 
 (defmethod binary+ ((x monoid_object) (y monoid_object))
-	(make-instance 'monoid_object :mnd (mnd x) :val (funcall (operation (mnd x)) (val x) (val y))))
+	(make-instance 'monoid_object 
+            :mnd (mnd x) 
+            :val (funcall (operation (mnd x)) (val x) (val y))))
 
 (defun + (&rest addends)
 	(cond
@@ -35,7 +37,7 @@
 		nil)))
 
 ;Создание каких-то моноидов
-(defvar mnd1 (create_monoid 'append nil))
-(defvar mnd2 (create_monoid 'cl+ 0))
-(defvar mnd3 (create_monoid '* 1))
-(defvar mnd4 (create_monoid '+ 1));"грязный моноид"
+;; (defvar mnd1 (create_monoid 'append nil))
+;; (defvar mnd2 (create_monoid 'cl+ 0))
+;; (defvar mnd3 (create_monoid '* 1))
+;; (defvar mnd4 (create_monoid '+ 1));"грязный моноид"
